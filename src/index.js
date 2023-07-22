@@ -5,8 +5,7 @@ import ReactDOM from 'react-dom';
 import { 
   Title,
   Loading, 
-//  Feature,
-//  Loading,
+  //Feature,
   Preview,
   Search,
 } from './components';
@@ -21,6 +20,7 @@ import {
    */
 
 const App = () => {
+
   const [searchResults, setSearchResults] = useState({info: {}, records: []});
   const [featuredResult, setFeaturedResult] = useState(null);
   const [isLoading, setIsLoading ] = useState(false);
@@ -43,21 +43,15 @@ return (
       setFeaturedResults={setFeaturedResult}
     />
 
-    {/* <Feature /> needs props for featuredResult, as well as setIsLoading and setSearchResults (clicking on searchable properties) */}
-
-    <Feature
+    {/* needs props for featuredResult, as well as setIsLoading and setSearchResults (clicking on searchable properties)*/}
+    {/* <Feature
       featuredResult={featuredResult}
-      setIsLoading={setIsLoading}
       setSearchResults={setSearchResults}
-    />
+      setIsLoading={setIsLoading}
+    /> */}
 
     {/* use a ternary and render null if isLoading is false */}
-    {isLoading? <Loading /> : null}
-
-    {/* <button onClick={()=>setIsLoading(!isLoading)}>Click Me</button> THIS IS SAMPLE CODE*/}
-    {/* <button onClick={loadComponent}>Click Me</button> THIS IS SAMPLE CODE*/}
-    {/* <Loading isLoading={isLoading} /> */}
-    {/* isloading?<Loading />: null */}
+    {isLoading ? <Loading isLoading={isLoading} /> : null}
   </div>
 );
 };

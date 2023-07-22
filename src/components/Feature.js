@@ -82,29 +82,44 @@ const Searchable = (searchTerm, searchValue, setIsLoading, setSearchResults,) =>
  * 
  * This component should be exported as default.
  */
-const Feature = (featuredResult) => {
+const Feature = ({featuredResult, setSearchResults, setIsLoading }) => {
 if (!featuredResult) {
   return <main id="feature"></main>;
 }
+console.log(featuredResult);
 return (
   <main id="feature">
- *   <div className="object-feature">
- *     <header>
- *       <h3>{featuredResult.title}</h3>
- *       <h4>featuredResult.dated</h4>
- *     </header>
- *     <section className="facts">
- *       <span className="title">FACT NAME</span>
- *       <span className="content">FACT VALUE</span>
- *       <span className="title">NEXT FACT NAME</span>
- *       <span className="content">NEXT FACT VALUE</span>
- *     </section>
- *     <section className="photos">
- {/* *       <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}
- *     </section>
- *   </div>
- * </main>
-)
+    <div className="object-feature">
+      <header>
+        <h3>{featuredResult.title}</h3>
+        <h3>{featuredResult.description}</h3>
+        <h4>featuredResult.dated</h4>*{" "}
+      </header>
+      <section className="facts">
+        <span className="title">Culture</span>
+        <span className="content">{featuredResult.culture}</span>
+        <span className="title">Medium</span>
+        <span className="content">{featuredResult.medium}</span>
+        <span className="title">Dimensions</span>
+        <span className="content">{featuredResult.dimensions}</span>
+        <span className="title">Department</span>
+        <span className="content">{featuredResult.department}</span>
+        <span className="title">Division</span>
+        <span className="content">{featuredResult.division}</span>
+        <span className="title">Contact</span>
+        <span className="content">{featuredResult.contact}</span>
+        <span className="title">Credit</span>
+        <span className="content">{featuredResult.creditline}</span>
+      </section>
+      <section className="photos"></section>
+      <section className="photos">
+        {/* *       <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}*{" "}
+      </section>
+      *{" "}
+    </div>
+    *{" "}
+  </main>
+);
 
 }
 
