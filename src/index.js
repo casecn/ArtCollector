@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { 
   Title,
   Loading, 
-  //Feature,
+  Feature,
   Preview,
   Search,
 } from './components';
@@ -44,17 +44,18 @@ return (
     />
 
     {/* needs props for featuredResult, as well as setIsLoading and setSearchResults (clicking on searchable properties)*/}
-    {/* <Feature
+    <Feature
       featuredResult={featuredResult}
       setSearchResults={setSearchResults}
       setIsLoading={setIsLoading}
-    /> */}
+    />
 
     {/* use a ternary and render null if isLoading is false */}
     {isLoading ? <Loading isLoading={isLoading} /> : null}
   </div>
 );
 };
+
 
 ReactDOM.render(
   <App />,

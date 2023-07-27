@@ -145,8 +145,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
           }
         >
           <option value="any">Any</option>
-          <ClassificationOptions />
-          {/* map over the classificationList, return an <option /> */}
+          <ClassificationOptions /> {/* map over the classificationList, return an <option /> */}
         </select>
       </fieldset>
       <fieldset>
@@ -163,8 +162,7 @@ const Search = ({ setIsLoading, setSearchResults }) => {
           }
         >
           <option value="any">Any</option>
-          <CenturyOptions />
-          {/* map over the centuryList, return an <option /> */}
+          <CenturyOptions /> {/* map over the centuryList, return an <option /> */}
         </select>
       </fieldset>
       <button>SEARCH</button>

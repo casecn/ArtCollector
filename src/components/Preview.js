@@ -7,6 +7,7 @@ import React from 'react';
 import { fetchQueryResultsFromURL } from '../api';
 
 const Preview = (props) => {
+  
   /**
    * Destructure setSearchResults, setFeaturedResult, and setIsLoading from props
    * and also destructure info and records from props.searchResults
@@ -15,7 +16,7 @@ const Preview = (props) => {
    */
   
   const { searchResults, setIsLoading, setSearchResults, setFeaturedResult} = props;
-  const {info, records} = props.searchResults;
+  const {info, records} = searchResults;
   /**
    * Don't touch this function, it's good to go.
    * 
@@ -59,17 +60,18 @@ const Preview = (props) => {
               <div  
                 key={ index }
                 className="object-preview"
-                onClick={(event) => {
-                  // prevent the default
-                  event.preventDefault();
-                  // set the featured result to be this record, using setFeaturedResult
-                  setFeaturedResult(record);
+                onClick={
+                  (event) => { 
+                    event.preventDefault(); 
+                    setFeaturedResult(record);
+                    // set the featured result to be this record, using setFeaturedResult
+                    // prevent the default
                   }
                 }
               >
               { 
                 // if the record.primaryimageurl exists, show this: <img src={ record.primaryimageurl } alt={ record.description } />, otherwise show nothing 
-                record.primaryimageurl? <img src={ record.primaryimageurl } alt ={ record.description } /> : null 
+                record.primaryimageurl? <a href="#"> <img src={ record.primaryimageurl } alt ={ record.title } /></a> : null 
               }
               {
                 // if the record.title exists, add this: <h3>{ record.title }</h3>, otherwise show this: <h3>MISSING INFO</h3>

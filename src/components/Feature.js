@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 
 // Don't touch this import
 import { fetchQueryResultsFromTermAndValue } from '../api';
+import Search from './Search';
 
 /**
  * We need a new component called Searchable which:
@@ -29,20 +30,23 @@ import { fetchQueryResultsFromTermAndValue } from '../api';
  * finally:
  *  - call setIsLoading, set it to false
  */
-const Searchable = (searchTerm, searchValue, setIsLoading, setSearchResults,) => {
+const Searchable = (props)  => {
+  const {searchTerm, searchValue, setIsLoading, setSearchResults} = props
+  
   return(  <span className="content">
-    <a href="#" onClick={async (event) => {
-      event.preventDefault();
-      setIsLoading(true);
-      try {
-        const result = await fetchQueryResultsFromTermAndValue(searchTerm, searchValue);
-        setSearchResults(result);
-      }catch(error){
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }}>{searchValue}
+    <a href="#" 
+      onClick={async (event) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+          const result = await fetchQueryResultsFromTermAndValue(searchTerm, searchValue);
+          setSearchResults(result);
+        }catch(error){
+          console.log(error);
+        } finally {
+          setIsLoading(false);
+        }
+      }}>{searchValue}
     </a>
   </span>
   );
@@ -73,7 +77,7 @@ const Searchable = (searchTerm, searchValue, setIsLoading, setSearchResults,) =>
  *   </div>
  * </main>
  * 
- * The different facts look like this: title, dated, images, primaryimageurl, description, culture, style, 
+ * The different facts look like this: title, description, dated, culture, images, primaryimageurl, ,  style, 
  * technique, medium, dimensions, people, department, division, contact, creditline
  * 
  * The <Searchable /> ones are: culture, technique, medium (first toLowerCase it), and person.displayname (one for each PEOPLE)
@@ -86,7 +90,6 @@ const Feature = ({featuredResult, setSearchResults, setIsLoading }) => {
 if (!featuredResult) {
   return <main id="feature"></main>;
 }
-console.log(featuredResult);
 return (
   <main id="feature">
     <div className="object-feature">
@@ -96,8 +99,27 @@ return (
         <h4>featuredResult.dated</h4>*{" "}
       </header>
       <section className="facts">
-        <span className="title">Culture</span>
-        <span className="content">{featuredResult.culture}</span>
+        {featuredResult.description ? (
+          <>
+            <span className="title">DESCRIPTION</span>
+            <span className="content">{featuredResult.description}</span>
+          </>
+        ) : null}
+
+        {featuredResult.culture ? (
+          <>
+          <span className="title">Culture</span>
+          <span className="content">{featuredResult.culture}
+          <Searchable 
+            searchTerm="culture"
+            setIsLoading={setIsLoading}
+            searchValue={featuredResult.culture}
+            setSearchResults={setSearchResults}
+          />
+          </span>
+          </>) : null}
+
+        
         <span className="title">Medium</span>
         <span className="content">{featuredResult.medium}</span>
         <span className="title">Dimensions</span>
@@ -113,11 +135,9 @@ return (
       </section>
       <section className="photos"></section>
       <section className="photos">
-        {/* *       <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}*{" "}
+        {/* *       <img src=IMAGE_URL alt=SOMETHING_WORTHWHILE /> */}
       </section>
-      *{" "}
     </div>
-    *{" "}
   </main>
 );
 
